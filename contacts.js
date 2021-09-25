@@ -1,5 +1,6 @@
 const fs = require("fs/promises");
 const path = require("path");
+const shortid = require('shortid');
 
 const contactsPath = path.join(__dirname, "db", "contacts.json");
 
@@ -35,7 +36,7 @@ async function addContact(name, email, phone) {
     const contacts = await fs.readFile(contactsPath);
     const allContacts = JSON.parse(contacts);
     const newContact = {
-        id: allContacts.length + 1,
+        id: shortid.generate(),
         name,
         email,
         phone,
